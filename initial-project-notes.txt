@@ -1,0 +1,69 @@
+React / Node app to store and maintain a log/list of an owners' artwork collection
+
+The app should be able to:
+- Add artwork to list
+- Edit existing artwork
+- Delete an existing artwork
+- Display list of all artwork with images
+- Display detailed view of an individual piece of artwork
+- Display large version of image by itself
+- Add images
+    - uploaded image should be modified to work as a thumbnail
+- Add document(s) 
+- create user
+- authenticate user
+- User could have multiple collections?
+
+Tools/Technologies:
+- React for frontend
+- Flexbox and/or Grid for CSS
+- use BEM naming methodology for CSS class names
+- MongoDB with Mongoose for MongoDB (using mongodb free cloud service)
+- Express for server and api
+- Authentication?
+- Webpack for development
+
+Project Structure:
+build/
+src/
+	src/client/
+	src/server/
+test/
+public/
+	public/style/
+	public/js/
+	public/js/lib/
+
+Plan:
+1. Backend
+	Server
+	Database
+	api
+	Authentication
+		Take class: https://www.udemy.com/course/react-redux-tutorial/learn/lecture/4669608#overview
+2. React frontend
+	Build landing page
+	Create User
+	Login/logout
+	Create Collection
+	Display artwork list
+	Display individual artwork
+	Add artwork
+	Edit artwork
+	Delete artwork
+	Add image
+	Add document(s)
+	
+
+Possible names:
+GoodArt
+ArtCollector
+Arty
+Brushstroke
+Walls
+NoEmptyWalls
+FillYourWalls
+Arty Walls
+Artster
+WallArt
+ArtSmart
