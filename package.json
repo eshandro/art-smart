@@ -10,8 +10,8 @@
   "author": "eshandro <erik843@gmail.com",
   "license": "MIT",
   "engines": {
-    "node": "10.15.1",
-    "npm": "6.8.0"
+    "node": "10.16.3",
+    "npm": "6.9.0"
   },
   "nodemondConfig": {
     "ignore": []

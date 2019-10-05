@@ -7,6 +7,7 @@ const serverConfig = require('./config');
 const devMode = process.env.NODE_ENV !== 'production';
 const PATHS = serverConfig.PATHS;
 
+
 // Initialize Express app
 const app = new Express();
 
@@ -23,20 +24,19 @@ mongoose.connect(serverConfig.mongoURL, { useNewUrlParser: true, useCreateIndex:
     }
 });
 
-// Pull in Routes
+// Pull in Router
+const router = require('./router');
 // const sampleRouteName = require('./routes/sample_route_name');
 
-/**
- * Document routes - route path plus type (GET, POST, etc.)
- * API routes:
- * 
-**/
 
+
+// Middleware:
 app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ limit: '20mb', extended: false }));
 // Path is wrong here -- need a path based on NODE_ENV production
 app.use(Express.static(devMode ? PATHS.dist : PATHS.public));
 // app.use('/api/sample_route_path', sampleRouteName);
+app.use('/', router);
 
 // may need this for react-router in the future
 // app.get('*', (req,res) => {
