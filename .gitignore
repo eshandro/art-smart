@@ -1,6 +1,9 @@
 # Notes
 todos.txt
 
+# config file
+src/server/config.js
+
 # Logs
 logs
 *.log
