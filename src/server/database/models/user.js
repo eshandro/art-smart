@@ -19,8 +19,6 @@ let UserSchema = new Schema({
     },
     bio: String,
     pic: String,
-    hash: String,
-    salt: String
 }, {timestamps: true});
 
 UserSchema.pre('save', function(next) {

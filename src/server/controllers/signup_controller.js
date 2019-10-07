@@ -1,6 +1,14 @@
 // Pull in Database queries as needed
 const findUserByEmail = require('../database/queries/findUserByEmail');
-const createNewUser = require('../database/queries/createNewUser')
+const createNewUser = require('../database/queries/createNewUser');
+
+const jwt = require("jwt-simple");
+const { secret } = require("../config");
+
+function tokenForUser(user) {
+    const timestamp = new Date().getTime();
+    return jwt.encode({ sub: user.id, iat: timestamp }, secret);
+}
 
 module.exports = {
     signup(req,res, next) {
@@ -31,7 +39,7 @@ module.exports = {
     
                 createNewUser(newUser)
                 .then(result => {
-                    res.json({ "success": "true"})
+                    res.json({ token: tokenForUser(result)});
                 })
                 .catch(err => {
                     console.log('err in createNewUser controller', err);
