@@ -50,5 +50,9 @@ module.exports = {
                 return next(err)
             })
         }
+    },
+    signin(req,res,next) {
+        // authentication handled by middleware using passport
+        res.send({token: tokenForUser(req.user) });
     }
 }

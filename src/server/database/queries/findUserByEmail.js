@@ -2,8 +2,8 @@ const User = require('../models/user');
 
 function findUserByEmail(email) {
     return User.findOne({email:email})
-        .then(user => user)
-        .catch(err => err)
+        .then(user => {return user; })
+        .catch(err => {return err; })
 };
 
 module.exports = findUserByEmail;

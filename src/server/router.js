@@ -1,7 +1,12 @@
 const {Router} = require('express');
+const passportService = require('./services/passport');
+const passport = require('passport');
+
+const requireAuth = passport.authenticate('jwt', { session: false});
+const requireLogin = passport.authenticate('local', {session: false});
 
 // Controllers
-const SignupController = require('./controllers/signup_controller');
+const authenticationController = require('./controllers/authentication_controller');
 
 const router = new Router();
 
@@ -10,6 +15,10 @@ const router = new Router();
  * API routes:
  *
 **/
-router.route('/signup').post(SignupController.signup);
+router.route('/auth').get(requireAuth, function(req,res) {
+    res.send({hi: "there"});
+})
+router.route('/signup').post(authenticationController.signup);
+router.route('/signin').post(requireLogin, authenticationController.signin);
 
 module.exports = router;
