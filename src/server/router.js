@@ -15,7 +15,9 @@ const router = new Router();
  * API routes:
  *
 **/
-router.route('/auth').get(requireAuth, function(req,res) {
+router.route('/auth').get(requireAuth, function(req,res,next) {
+    console.log('req.user', req.user);
+    
     res.send({hi: "there"});
 })
 router.route('/signup').post(authenticationController.signup);

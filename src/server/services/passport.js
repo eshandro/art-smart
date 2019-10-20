@@ -12,7 +12,7 @@ const localOptions = {usernameField: "email"};
 const localLogin = new LocalStrategy(localOptions, function(email, password, done){
     findUserByEmail(email)
     .then(user => {
-        console.log('user:', user);
+        console.log('user in localLogin findUserByEmail:', user);
         
         if (!user) return done(null, false);
         user.comparePassword(password, function(err, isMatch) {
@@ -25,7 +25,7 @@ const localLogin = new LocalStrategy(localOptions, function(email, password, don
 })
 
 const jwtOptions = {
-    jwtFromRequest: ExtractJwt.fromHeader('authentication'),
+    jwtFromRequest: ExtractJwt.fromHeader('auth'),
     secretOrKey: secret
 };
 

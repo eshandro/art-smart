@@ -3,7 +3,9 @@ const findUserByEmail = require('../database/queries/findUserByEmail');
 const createNewUser = require('../database/queries/createNewUser');
 
 const jwt = require("jwt-simple");
-const { secret } = require("../config");
+
+const config = require('../config');
+const secret = process.env.SECRET || config.secret;
 
 function tokenForUser(user) {
     const timestamp = new Date().getTime();
@@ -53,6 +55,8 @@ module.exports = {
     },
     signin(req,res,next) {
         // authentication handled by middleware using passport
+        // may need to auth error handling here
+        console.log('req.user in signin authentication_controller:', req.user);
         res.send({token: tokenForUser(req.user) });
     }
 }
