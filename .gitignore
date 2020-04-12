@@ -1,6 +1,9 @@
 # Notes
 todos.txt
 
+#vs code config
+.vscode
+
 # config file
 src/server/config.js
 
