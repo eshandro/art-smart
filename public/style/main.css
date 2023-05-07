@@ -1,0 +1,179 @@
+:root {
+	--primary-color: #52D1DC;
+	--secondary-color:#EB6424;
+	--tertiary-color: #CAFF8A;
+	--main-text-color: rgb(29,43,54);
+	--link-text-color: rgb(68, 62, 117);
+	--primary-background: #f3f2f2;
+
+	--main-font-family: 'PT Sans', sans-serif;
+	--header-font-family: "Lucida Grande", Arial, sans-serif;
+}
+
+html {
+	box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
+}
+body {
+	background-color: var(--primary-background);
+	color: var(--main-text-color);
+	font-family: var(--main-font-family);
+}
+h1,h2,h3,h4,h5,h6 {
+	font-family: var(--header-font-family);
+}
+/* Links */
+a {
+	color: var(--link-text-color);
+	text-decoration: none;
+	position: relative;
+}
+a:after {
+	content: '';
+	position: absolute;
+	bottom: -3px;
+	left: 0;
+	width: 0%;
+	border-bottom: 2px solid var(--tertiary-color);
+}
+a:hover:after {
+	width: 75%;
+	margin: 0 auto;
+	left: 0;
+	right: 0;
+}
+
+/* Layout */
+.artwork-list {
+	display:grid;
+	grid-template-columns: repeat(auto-fill,minmax(auto,300px));
+	counter-reset: pieces;
+}
+.artwork {
+	margin: 16px;
+	padding: 8px;
+	background-color: #fff;
+	border: 2px solid white;
+	border-radius: 5px;
+	display: flex;
+	flex-direction: column;
+	counter-increment: pieces;
+}
+/* Details */
+.artwork__title::before {
+	content: counter(pieces) ". "
+}
+.artwork__details {
+	list-style: none;
+	padding-left: .25em;
+	margin-bottom: 1em;
+}
+.artwork__detail {
+}
+.artwork__detail--label {
+	font-weight: 600;
+}
+.artwork__detail--info {
+	margin-left: 1.5em;
+}
+.artwork__image {
+	margin: auto;
+}
+.artwork__image-thumb {
+	cursor: pointer;
+}
+
+/* Modal */
+.modal-overlay {
+	height: 100%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.6);
+	opacity: 1;
+	visibility: visible;
+	transition: opacity 500ms ease-in;
+
+	display: flex;
+	/*	Use margin: auto on flex item instead to prevent issue when flex item's content overflows container*/
+	margin: 0;
+	padding: 1em 0 0;
+	z-index: 99999;
+}
+.modal-overlay.modal-hidden {
+	opacity: 0;
+	visibility: hidden;
+}
+.modal {
+	position: relative;
+	/*	Use margin: auto on flex item instead of align-items: center; justify-content: center on 
+	flex container to prevent issue when flex item's content overflows container*/
+	margin: auto;
+	width: 98%;
+	height: 98%;
+	padding: 1.5em;
+	overflow-x: hidden;
+	overflow-y: auto;
+	-webkit-overflow-scrolling: touch;
+	background: var(--primary-background);
+}
+@media only screen and (min-width: 600px ) {
+	.modal {
+		width: 94%;
+	}
+}
+@media only screen and (min-width: 900px ) {
+	.modal {
+		width: 90%;
+	}
+}
+@media only screen and (min-width: 1200px ) {
+	.modal {	
+		width: 84%;
+	}
+}
+.modal-contents {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.close-modal {
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 11;
+	background-color: var(--secondary-color);
+	color: white;
+	font-size: 36px;
+	padding: 6px 10px 10px 10px;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+}
+#modal-title {
+	text-align: center;
+	min-height: 40px;
+	border-bottom: 1px solid rgba(217, 217, 217, 0.8);
+	margin-top: .2em;
+	margin-bottom: .4em;
+}
+#modal-image {
+	display: flex;
+	height: 100%;
+}
+#modal-image img {
+	/* object-fit: cover; */
+	margin: auto;
+	flex: 0 0 80%;
+}
+.noScroll {
+	overflow-y: hidden;
+}
